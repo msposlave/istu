@@ -2,30 +2,34 @@
 
 
 
-public static class SortingAlgorithms
+/// <summary>
+/// Сортировка выбором (Selection Sort)
+/// Время: O(n²), Память: O(1)
+/// </summary>
+internal class Program
 {
-    /// <summary>
-    /// Сортировка пузырьком (Bubble Sort)
-    /// Время: O(n²), Память: O(1)
-    /// </summary>
-    public static void BubbleSort(int[] arr)
+    private static void Main(string[] args)
     {
-        if (arr == null || arr.Length <= 1) return;
-
-        int n = arr.Length;
-        for (int i = 0; i < n - 1; i++)
+        public static void SelectionSort(int[] arr)
         {
-            bool swapped = false;
-            for (int j = 0; j < n - i - 1; j++)
+            if (arr == null || arr.Length <= 1) return;
+
+            int n = arr.Length;
+            for (int i = 0; i < n - 1; i++)
             {
-                if (arr[j] > arr[j + 1])
+                int minIndex = i;
+                for (int j = i + 1; j < n; j++)
                 {
-                    Swap(arr, j, j + 1);
-                    swapped = true;
+                    if (arr[j] < arr[minIndex])
+                    {
+                        minIndex = j;
+                    }
+                }
+                if (minIndex != i)
+                {
+                    Swap(arr, i, minIndex);
                 }
             }
-            // Если не было перестановок — массив отсортирован
-            if (!swapped) break;
         }
     }
 }
